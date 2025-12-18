@@ -24,10 +24,9 @@ services:
       STORAGE_TYPE: ${STORAGE_TYPE:-minio}
 
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.atlas-api.rule=Host(`api.innmaintenance.com`)
-      - traefik.http.routers.atlas-api.entrypoints=web,websecure
-      - traefik.http.services.atlas-api.loadbalancer.server.port=8080
+  - traefik.enable=true
+  - traefik.http.routers.atlas-api.rule=Host(`api.innmaintenance.com`)
+  - traefik.http.services.atlas-api.loadbalancer.server.port=8080
 
     networks:
       - coolify
@@ -57,7 +56,6 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.atlas-frontend.rule=Host(`app.innmaintenance.com`)
-      - traefik.http.routers.atlas-frontend.entrypoints=web,websecure
       - traefik.http.services.atlas-frontend.loadbalancer.server.port=3000
 
     networks:
