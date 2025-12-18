@@ -4,7 +4,7 @@ services:
     depends_on:
       - minio
     environment:
-      DB_URL: jdbc:postgresql://10.0.1.1:5432/atlas_cmms
+      DB_URL: 10.0.1.1:5432/atlas_cmms
       DB_USER: ${POSTGRES_USER}
       DB_PWD: ${POSTGRES_PWD}
 
