@@ -25,6 +25,11 @@ services:
       MINIO_SECRET_KEY: ${MINIO_PASSWORD}
       STORAGE_TYPE: ${STORAGE_TYPE:-minio}
 
+      # hard-disable GCP init
+      GCP_BUCKET_NAME: ""
+      GCP_PROJECT_ID: ""
+      GCP_JSON: ""
+
     labels:
       - traefik.enable=true
       - traefik.http.routers.atlas-api.rule=Host(`api.innmaintenance.com`)
