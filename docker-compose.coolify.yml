@@ -40,9 +40,9 @@ services:
       NODE_ENV: production
 
       # frontend-only runtime vars (da runtime-env-cra ne puca)
-      LOGO_PATHS: disabled
-      CUSTOM_COLORS: disabled
-      BRAND_CONFIG: disabled
+      LOGO_PATHS: "[]"
+      CUSTOM_COLORS: "{}"
+      BRAND_CONFIG: "{}"
       OAUTH2_PROVIDER: disabled
       GOOGLE_TRACKING_ID: disabled
       GOOGLE_KEY: disabled
