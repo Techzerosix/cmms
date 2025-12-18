@@ -24,6 +24,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.atlas-api.rule=Host(`api.innmaintenance.com`)
+      - traefik.http.routers.atlas-api.priority=1000
       - traefik.http.services.atlas-api.loadbalancer.server.port=8080
 
     networks:
@@ -54,6 +55,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.atlas-frontend.rule=Host(`app.innmaintenance.com`)
+      - traefik.http.routers.atlas-frontend.priority=1000
       - traefik.http.services.atlas-frontend.loadbalancer.server.port=3000
 
     networks:
