@@ -26,7 +26,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.atlas-api.rule=Host(`api.innmaintenance.com`)
-      - traefik.http.routers.atlas-api.entrypoints=http,https
+      - traefik.http.routers.atlas-api.entrypoints=web,websecure
       - traefik.http.services.atlas-api.loadbalancer.server.port=8080
 
     networks:
@@ -41,10 +41,23 @@ services:
       PUBLIC_API_URL: ${PUBLIC_API_URL}
       NODE_ENV: production
 
+      # frontend-only runtime vars (da runtime-env-cra ne puca)
+      LOGO_PATHS: disabled
+      CUSTOM_COLORS: disabled
+      BRAND_CONFIG: disabled
+      OAUTH2_PROVIDER: disabled
+      GOOGLE_TRACKING_ID: disabled
+      GOOGLE_KEY: disabled
+      MUI_X_LICENSE: disabled
+      CLOUD_VERSION: "false"
+      ENABLE_SSO: "false"
+      INVITATION_VIA_EMAIL: "false"
+      DEMO_LINK: disabled
+
     labels:
       - traefik.enable=true
       - traefik.http.routers.atlas-frontend.rule=Host(`app.innmaintenance.com`)
-      - traefik.http.routers.atlas-frontend.entrypoints=http,https
+      - traefik.http.routers.atlas-frontend.entrypoints=web,websecure
       - traefik.http.services.atlas-frontend.loadbalancer.server.port=3000
 
     networks:
@@ -62,7 +75,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.atlas-minio.rule=Host(`minio.innmaintenance.com`)
-      - traefik.http.routers.atlas-minio.entrypoints=http,https
+      - traefik.http.routers.atlas-minio.entrypoints=web,websecure
       - traefik.http.services.atlas-minio.loadbalancer.server.port=9000
 
     networks:
