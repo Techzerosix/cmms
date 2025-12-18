@@ -1,4 +1,5 @@
 name: atlas-cmms
+
 services:
   api:
     image: intelloop/atlas-cmms-backend
@@ -24,6 +25,12 @@ services:
       MINIO_SECRET_KEY: ${MINIO_PASSWORD}
       STORAGE_TYPE: ${STORAGE_TYPE:-minio}
 
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.atlas-api.rule=Host(`api.innmaintenance.com`)
+      - traefik.http.routers.atlas-api.entrypoints=http,https
+      - traefik.http.services.atlas-api.loadbalancer.server.port=8080
+
   frontend:
     image: intelloop/atlas-cmms-frontend
     depends_on:
@@ -33,6 +40,12 @@ services:
       PUBLIC_API_URL: ${PUBLIC_API_URL}
       NODE_ENV: production
 
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.atlas-frontend.rule=Host(`app.innmaintenance.com`)
+      - traefik.http.routers.atlas-frontend.entrypoints=http,https
+      - traefik.http.services.atlas-frontend.loadbalancer.server.port=3000
+
   minio:
     image: minio/minio:RELEASE.2025-04-22T22-12-26Z
     environment:
@@ -41,6 +54,12 @@ services:
     volumes:
       - minio_data:/data
     command: server --address ":9000" --console-address ":9001" /data
+
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.atlas-minio.rule=Host(`minio.innmaintenance.com`)
+      - traefik.http.routers.atlas-minio.entrypoints=http,https
+      - traefik.http.services.atlas-minio.loadbalancer.server.port=9000
 
 volumes:
   minio_data:
