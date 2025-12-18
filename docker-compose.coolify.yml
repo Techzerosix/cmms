@@ -40,7 +40,7 @@ services:
       NODE_ENV: production
 
       # frontend-only runtime vars (da runtime-env-cra ne puca)
-      LOGO_PATHS: ""
+      LOGO_PATHS: 
       CUSTOM_COLORS: "{}"
       BRAND_CONFIG: "{}"
       OAUTH2_PROVIDER: disabled
