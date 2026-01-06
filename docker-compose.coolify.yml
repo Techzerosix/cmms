@@ -46,9 +46,6 @@ services:
       PUBLIC_API_URL: ${PUBLIC_API_URL}
       NODE_ENV: production
 
-      # frontend uses this to show the logo from /static/...
-      LOGO_PATHS: '{"light":"/static/images/logo/logo.png","dark":"/static/images/logo/logo.png"}'
-
       CUSTOM_COLORS: ${CUSTOM_COLORS:-}
       BRAND_CONFIG: ${BRAND_CONFIG:-}
       OAUTH2_PROVIDER: disabled
