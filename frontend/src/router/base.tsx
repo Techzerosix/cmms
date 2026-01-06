@@ -41,7 +41,7 @@ const Landing = Loader(lazy(() => import('../content/landing')));
 const baseRoutes = [
   {
     path: '/',
-    element: <Overview />
+    element: <Navigate to="/account/login" replace />
   },
   {
     path: 'free-cmms',
