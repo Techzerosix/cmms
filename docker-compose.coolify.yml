@@ -14,7 +14,7 @@ services:
       KEYGEN_PRODUCT_TOKEN: ${KEYGEN_PRODUCT_TOKEN:-disabled}
 
       # IMPORTANT: prevent backend LogoSetupComponent from parsing LOGO_PATHS
-      LOGO_PATHS: ""
+      LOGO_PATHS: "{}"
 
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-prod}
       JWT_SECRET_KEY: ${JWT_SECRET_KEY}
@@ -47,7 +47,7 @@ services:
       NODE_ENV: production
 
       # frontend uses this to show the logo from /static/...
-      LOGO_PATHS: ${LOGO_PATHS:-}
+      LOGO_PATHS: '{"light":"/static/images/logo/logo.png","dark":"/static/images/logo/logo.png"}'
 
       CUSTOM_COLORS: ${CUSTOM_COLORS:-}
       BRAND_CONFIG: ${BRAND_CONFIG:-}
