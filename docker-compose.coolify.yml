@@ -43,9 +43,9 @@ services:
       PUBLIC_API_URL: ${PUBLIC_API_URL}
       NODE_ENV: production
 
-      LOGO_PATHS: "{}"
-      CUSTOM_COLORS: "{}"
-      BRAND_CONFIG: "{}"
+      LOGO_PATHS: ${LOGO_PATHS:-}
+      CUSTOM_COLORS: ${CUSTOM_COLORS:-}
+      BRAND_CONFIG: ${BRAND_CONFIG:-}
       OAUTH2_PROVIDER: disabled
       GOOGLE_TRACKING_ID: disabled
       GOOGLE_KEY: disabled
