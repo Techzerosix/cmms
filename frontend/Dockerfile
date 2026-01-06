@@ -1,6 +1,7 @@
 FROM node:21.6.1 AS build
 
 WORKDIR /usr/src/app
+ENV HUSKY=0
 COPY package*.json ./
 RUN npm config set fetch-retry-maxtimeout 6000000
 RUN npm config set fetch-retry-mintimeout 1000000
