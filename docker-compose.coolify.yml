@@ -23,7 +23,6 @@ services:
 
       SERVER_FORWARD_HEADERS_STRATEGY: native
       SERVER_USE_FORWARD_HEADERS: "true"
-
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.atlas-api.rule=Host(`api.innmaintenance.com`)"
@@ -33,7 +32,9 @@ services:
       - coolify
 
   frontend:
-    image: intelloop/atlas-cmms-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     depends_on:
       - api
     environment:
@@ -52,7 +53,6 @@ services:
       ENABLE_SSO: "false"
       INVITATION_VIA_EMAIL: "false"
       DEMO_LINK: disabled
-
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.atlas-frontend.rule=Host(`app.innmaintenance.com`)"
@@ -69,7 +69,6 @@ services:
     volumes:
       - minio_data:/data
     command: server --address ":9000" --console-address ":9001" /data
-
     labels:
       - "traefik.enable=true"
 
@@ -82,7 +81,6 @@ services:
       - "traefik.http.routers.atlas-minio-console.rule=Host(`minio-console.innmaintenance.com`)"
       - "traefik.http.routers.atlas-minio-console.entrypoints=http"
       - "traefik.http.services.atlas-minio-console.loadbalancer.server.port=9001"
-
     networks:
       - coolify
 
