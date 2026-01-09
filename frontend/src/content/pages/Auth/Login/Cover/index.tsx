@@ -34,23 +34,23 @@ function LoginCover() {
         >
           <Card
             sx={{
+              width: '100%',
               p: { xs: 3, sm: 4 },
               my: { xs: 3, sm: 4 },
-              width: '100%',
               borderRadius: 3
             }}
           >
-            <Box textAlign="center" sx={{ mb: 2 }}>
-              {/* */}
+            <Box textAlign="center">
+              {/*  */}
               <Box
                 sx={{
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  mb: { xs: 3, sm: 4 }, // razmak do "Log In"
-                  mt: { xs: 0.5, sm: 1 },
-                  '& svg, & img': {
-                    width: { xs: 64, sm: 80, md: 92 },
+                  mt: { xs: 1, sm: 1.5 },
+                  mb: { xs: 3, sm: 4 },
+                  '& img': {
+                    width: { xs: 76, sm: 92, md: 104 },
                     height: 'auto',
                     display: 'block'
                   }
@@ -63,8 +63,8 @@ function LoginCover() {
                 variant="h2"
                 sx={{
                   mb: 1.5,
-                  lineHeight: 1.15,
-                  fontWeight: 700
+                  fontWeight: 700,
+                  lineHeight: 1.15
                 }}
               >
                 {t('login')}
