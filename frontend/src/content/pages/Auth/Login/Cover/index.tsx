@@ -40,7 +40,7 @@ function LoginCover() {
             }}
           >
             <Box textAlign="center">
-              {/*  */}
+              {/**/}
               <Box
                 sx={{
                   width: '100%',
@@ -48,7 +48,7 @@ function LoginCover() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   mt: { xs: 1, sm: 1.5 },
-                  mb: { xs: 4, sm: 5 } 
+                  mb: { xs: 4, sm: 5 }
                 }}
               >
                 <Box
@@ -56,11 +56,10 @@ function LoginCover() {
                   src="/static/images/logo/logo.png"
                   alt="Logo"
                   sx={{
-                    width: { xs: 88, sm: 110, md: 124 }, 
+                    width: { xs: 88, sm: 110, md: 124 },
                     height: 'auto',
                     display: 'block',
-                
-                    transform: 'translateX(-10px)' // po potrebi: -6px / -8px / -12px
+                    objectFit: 'contain'
                   }}
                 />
               </Box>
