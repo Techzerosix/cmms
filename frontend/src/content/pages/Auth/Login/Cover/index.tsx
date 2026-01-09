@@ -91,7 +91,7 @@ function LoginCover() {
             <Box sx={{ mt: 1 }}>
               <JWTLogin />
             </Box>
-
+            {/*
             <Box sx={{ mt: 4 }}>
               <Typography
                 component="span"
@@ -107,6 +107,7 @@ function LoginCover() {
                 </Link>
               </Box>
             </Box>
+            */}
           </Card>
         </Container>
       </Content>
