@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet-async';
 import JWTLogin from '../LoginJWT';
 
 import { useTranslation } from 'react-i18next';
-import Logo from 'src/components/LogoSign';
 
 const Content = styled(Box)(
   () => `
@@ -41,7 +40,7 @@ function LoginCover() {
             }}
           >
             <Box textAlign="center">
-              {/* */}
+              {/*  */}
               <Box
                 sx={{
                   width: '100%',
@@ -49,24 +48,26 @@ function LoginCover() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   mt: { xs: 1, sm: 1.5 },
-                  mb: { xs: 3.5, sm: 4.5 }, 
-                  lineHeight: 0, 
-                  '& img': {
-                    display: 'block', 
-                    margin: '0 auto', 
-                    width: { xs: 84, sm: 104, md: 116 }, 
-                    height: 'auto',
-                    objectFit: 'contain'
-                  }
+                  mb: { xs: 4, sm: 5 } 
                 }}
               >
-                <Logo />
+                <Box
+                  component="img"
+                  src="/static/images/logo/logo.png"
+                  alt="Logo"
+                  sx={{
+                    width: { xs: 88, sm: 110, md: 124 }, 
+                    height: 'auto',
+                    display: 'block',
+                
+                    transform: 'translateX(-10px)' // po potrebi: -6px / -8px / -12px
+                  }}
+                />
               </Box>
 
               <Typography
                 variant="h2"
                 sx={{
-                  mt: 0,
                   mb: 1.5,
                   fontWeight: 700,
                   lineHeight: 1.15
