@@ -1,126 +1,71 @@
-import { Box, styled, Tooltip } from '@mui/material';
-import { Link } from 'react-router-dom';
+import {
+  Box,
+  styled,
+  Tooltip,
+  tooltipClasses,
+  TooltipProps,
+  useMediaQuery,
+  useTheme
+} from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { useBrand } from '../../hooks/useBrand';
 
-const LogoWrapper = styled(Link)(
+const LogoWrapper = styled(Box)(
   ({ theme }) => `
-        color: ${theme.palette.text.primary};
-        padding: ${theme.spacing(0, 1, 0, 0)};
-        display: flex;
-        text-decoration: none;
-        font-weight: ${theme.typography.fontWeightBold};
+    color: ${theme.palette.text.primary};
+    display: flex;
+    align-items: center;
+    width: 53px;
+    margin: 0 auto;
+    font-weight: ${theme.typography.fontWeightBold};
+    cursor: default;
 `
 );
 
 const LogoSignWrapper = styled(Box)(
   () => `
-        width: 52px;
-        height: 38px;
-        margin-top: 4px;
-        transform: scale(.8);
+    width: 52px;
+    height: 52px;
 `
 );
 
-const LogoSign = styled(Box)(
-  ({ theme }) => `
-        background: ${theme.general.reactFrameworkColor};
-        width: 18px;
-        height: 18px;
-        border-radius: ${theme.general.borderRadiusSm};
-        position: relative;
-        transform: rotate(45deg);
-        top: 3px;
-        left: 17px;
+const TooltipWrapper = styled(({ className, ...props }: TooltipProps) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.colors.alpha.trueWhite[100],
+    color: theme.palette.getContrastText(theme.colors.alpha.trueWhite[100]),
+    fontSize: theme.typography.pxToRem(12),
+    fontWeight: 'bold',
+    borderRadius: theme.general.borderRadiusSm
+  }
+}));
 
-        &:after, 
-        &:before {
-            content: "";
-            display: block;
-            width: 18px;
-            height: 18px;
-            position: absolute;
-            top: -1px;
-            right: -20px;
-            transform: rotate(0deg);
-            border-radius: ${theme.general.borderRadiusSm};
-        }
+interface OwnProps {
+  white?: boolean;
+}
 
-        &:before {
-            background: ${theme.palette.primary.main};
-            right: auto;
-            left: 0;
-            top: 20px;
-        }
+function Logo({ white }: OwnProps) {
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const { logo, name: brandName } = useBrand();
 
-        &:after {
-            background: ${theme.palette.secondary.main};
-        }
-`
-);
-
-const LogoSignInner = styled(Box)(
-  ({ theme }) => `
-        width: 16px;
-        height: 16px;
-        position: absolute;
-        top: 12px;
-        left: 12px;
-        z-index: 5;
-        border-radius: ${theme.general.borderRadiusSm};
-        background: ${theme.header.background};
-`
-);
-
-const LogoTextWrapper = styled(Box)(
-  ({ theme }) => `
-        padding-left: ${theme.spacing(1)};
-`
-);
-
-const VersionBadge = styled(Box)(
-  ({ theme }) => `
-        background: ${theme.palette.success.main};
-        color: ${theme.palette.success.contrastText};
-        padding: ${theme.spacing(0.4, 1)};
-        border-radius: ${theme.general.borderRadiusSm};
-        text-align: center;
-        display: inline-block;
-        line-height: 1;
-        font-size: ${theme.typography.pxToRem(11)};
-`
-);
-
-const LogoText = styled(Box)(
-  ({ theme }) => `
-        font-size: ${theme.typography.pxToRem(15)};
-        font-weight: ${theme.typography.fontWeightBold};
-`
-);
-
-function Logo() {
-  const { t }: { t: any } = useTranslation();
+  const width = 60;
+  const height = 60;
 
   return (
-    <LogoWrapper to="/overview">
-      <LogoSignWrapper>
-        <LogoSign>
-          <LogoSignInner />
-        </LogoSign>
-      </LogoSignWrapper>
-      <Box
-        component="span"
-        sx={{
-          display: { xs: 'none', sm: 'inline-block' }
-        }}
-      >
-        <LogoTextWrapper>
-          <Tooltip title={t('Version') + ' 3.1'} arrow placement="right">
-            <VersionBadge>3.1</VersionBadge>
-          </Tooltip>
-          <LogoText>Tokyo</LogoText>
-        </LogoTextWrapper>
-      </Box>
-    </LogoWrapper>
+    <TooltipWrapper title={brandName} arrow>
+      <LogoWrapper>
+        <LogoSignWrapper>
+          <img
+            src={white ? logo.white : logo.dark}
+            width={`${width * (mobile ? 0.7 : 1)}px`}
+            height={`${height * (mobile ? 0.7 : 1)}px`}
+            alt={brandName}
+          />
+        </LogoSignWrapper>
+      </LogoWrapper>
+    </TooltipWrapper>
   );
 }
 
