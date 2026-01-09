@@ -5,6 +5,7 @@ import api from '../utils/api';
 import { revertAll } from 'src/utils/redux';
 
 const basePath = 'license';
+
 interface LicenseState {
   isLicenseValid: boolean | null;
 }
@@ -30,10 +31,14 @@ const slice = createSlice({
 export const reducer = slice.reducer;
 
 export const getLicenseValidity = (): AppThunk => async (dispatch) => {
-  const { success } = await api.get<{ success: boolean }>(
-    `${basePath}/validity`
-  );
-  dispatch(slice.actions.getLicenseValidity({ validity: success }));
-};
-
-export default slice;
+  try {
+    const { success } = await api.get<{ success: boolean }>(
+      `${basePath}/validity`
+    );
+    dispatch(slice.actions.getLicenseValidity({ validity: success }));
+  } catch (e: any) {
+    // Unlicensed/self-host: backend can return 403 for license endpoints.
+    // Do not crash app init; treat as "invalid license".
+    try {
+      const parse
+::contentReference[oaicite:0]{index=0}
