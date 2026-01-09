@@ -6,7 +6,7 @@ const googleServicesJson = process.env.GOOGLE_SERVICES_JSON;
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  name: 'Atlas CMMS',
+  name: 'Solvix',
   slug: 'atlas-cmms',
   version: '1.0.33',
   orientation: 'portrait',
@@ -70,7 +70,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       'expo-barcode-scanner',
       {
-        cameraPermission: 'Allow Atlas to access camera.'
+        cameraPermission: 'Allow access to camera.'
       }
     ],
     'expo-notifications',
