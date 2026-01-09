@@ -2,7 +2,6 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import type { AppThunk } from 'src/store';
 import api from '../utils/api';
-import { revertAll } from 'src/utils/redux';
 
 const basePath = 'license';
 
@@ -32,13 +31,29 @@ export const reducer = slice.reducer;
 
 export const getLicenseValidity = (): AppThunk => async (dispatch) => {
   try {
-    const { success } = await api.get<{ success: boolean }>(
-      `${basePath}/validity`
-    );
-    dispatch(slice.actions.getLicenseValidity({ validity: success }));
-  } catch (e: any) {
-    // Unlicensed/self-host: backend can return 403 for license endpoints.
-    // Do not crash app init; treat as "invalid license".
+    const data = await api.get<{ success: boolean }>(`${basePath}/validity`);
+    dispatch(slice.actions.getLicenseValidity({ validity: !!data?.success }));
+  } catch (err: any) {
+    // api.ts baca Error sa JSON stringom u message, npr:
+    // {"status":403,"statusText":"Forbidden","body":null}
+    let status: number | undefined;
+
     try {
-      const parse
-::contentReference[oaicite:0]{index=0}
+      const parsed = JSON.parse(err?.message || '');
+      status = parsed?.status;
+    } catch (parseErr) {
+      // ignore
+    }
+
+    // 403 = očekivano stanje bez licence, ne smije rušiti app init
+    if (status === 403) {
+      dispatch(slice.actions.getLicenseValidity({ validity: false }));
+      return;
+    }
+
+    // fallback za ostale greške
+    dispatch(slice.actions.getLicenseValidity({ validity: false }));
+  }
+};
+
+export default slice;
