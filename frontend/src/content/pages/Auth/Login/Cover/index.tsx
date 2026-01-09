@@ -41,18 +41,22 @@ function LoginCover() {
             }}
           >
             <Box textAlign="center">
-              {/*  */}
+              {/* */}
               <Box
                 sx={{
+                  width: '100%',
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
                   mt: { xs: 1, sm: 1.5 },
-                  mb: { xs: 3, sm: 4 },
+                  mb: { xs: 3.5, sm: 4.5 }, 
+                  lineHeight: 0, 
                   '& img': {
-                    width: { xs: 76, sm: 92, md: 104 },
+                    display: 'block', 
+                    margin: '0 auto', 
+                    width: { xs: 84, sm: 104, md: 116 }, 
                     height: 'auto',
-                    display: 'block'
+                    objectFit: 'contain'
                   }
                 }}
               >
@@ -62,6 +66,7 @@ function LoginCover() {
               <Typography
                 variant="h2"
                 sx={{
+                  mt: 0,
                   mb: 1.5,
                   fontWeight: 700,
                   lineHeight: 1.15
@@ -83,7 +88,6 @@ function LoginCover() {
               </Typography>
             </Box>
 
-            {/* */}
             <Box sx={{ mt: 1 }}>
               <JWTLogin />
             </Box>
